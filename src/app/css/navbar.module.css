@@ -1,0 +1,29 @@
+.NavL{
+    
+    font-size: var(--nextui-font-size-medium);
+    line-height: var(--nextui-line-height-medium);
+    --tw-text-opacity: 1;
+    color: hsl(var(--nextui-primary)/var(--nextui-primary-opacity,var(--tw-text-opacity)));
+     padding: 10px;
+}
+
+.NavText {
+    padding: 10px;
+    color:#B31312;
+    
+    
+}
+
+.medianav{
+  position: relative;
+  }
+
+
+@media only screen and (max-width: 320px) {
+     
+      .medianav{
+        position: relative;
+        right: 300px;
+      }
+   
+  }

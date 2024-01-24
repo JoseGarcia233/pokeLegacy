@@ -1,0 +1,124 @@
+
+.MainCards {
+  display: grid;
+  grid-template-columns: 162px 162px 162px 162px;
+  grid-gap: 50px 81px;
+  position: relative;
+  left: 38px;
+  bottom:35px ;
+}
+
+.ContainerC{
+  border-radius: 2ch;
+  width: 1000px;
+  height: 696px;
+  position: relative;
+  left: 20px;
+  top: 600px;
+  padding: 10px;
+  -webkit-box-shadow: 1px 3px 30px -5px rgba(195, 5, 37, 1);
+  -moz-box-shadow: 1px 3px 30px -5px rgba(195, 5, 37, 1);
+  box-shadow: 1px 3px 30px -5px rgba(195, 5, 37, 1);
+  margin-bottom: 600px;
+}
+
+.titlepoke{
+  position: relative;
+  width: 400px;
+  left: 339px;
+  bottom: 23px;
+}
+
+.ButtonStarted{
+  background-color: #f0051c;
+  border-radius: 2ch;
+  width: 100px;
+  height: 40px;
+  position: relative;
+  left: 440px;
+  bottom: 32px;
+}
+.ButtonStarted:hover{
+  box-shadow: 11px 22px 21px -8px rgba(240, 5, 28);
+}
+
+.pokefullcard{
+  display: grid;
+  grid-template-columns: 150px 150px 150px 150px 150px  ;
+  grid-gap: 20px 51px;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  left: 38px;
+  bottom:35px ;
+}
+
+
+.containermain{
+  position: relative;
+  top: 180px;
+  left: 169px;
+  width: 500px;
+  
+}
+
+@media only screen and (max-width: 320px) {
+     
+  .ContainerC{
+    border-radius: 2ch;
+    width: 281px;
+    height: 1900px;
+    position: relative;
+    left: -175px;
+    top: -50px;
+    padding: 10px;
+    -webkit-box-shadow: 1px 3px 30px -5px rgba(195, 5, 37, 1);
+    -moz-box-shadow: 1px 3px 30px -5px rgba(195, 5, 37, 1);
+    box-shadow: 1px 3px 30px -5px rgba(195, 5, 37, 1);
+   
+  }
+
+
+.titlepoke{
+  position: relative;
+  width: 150px;
+  left: 52px;
+  bottom: 23px;
+}
+
+  .MainCards {
+    display: grid;
+    grid-template-columns: 140px  ;
+    grid-gap: 30px 61px;
+    position: relative;
+    left: 58px;
+    top:11px ;
+  }
+  
+
+  .ButtonStarted{
+    background-color: #f0051c;
+    border-radius: 2ch;
+    width: 90px;
+    height: 30px;
+    position: relative;
+    left: 81px;
+    top: 26px;
+  }
+  .ButtonStarted:hover{
+    box-shadow: 11px 22px 21px -8px rgba(240, 5, 28);
+  }
+
+  .pokefullcard{
+    display: grid;
+    grid-template-columns: 150px  ;
+    grid-gap: 20px 51px;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    left: -78px;
+    bottom:29px ;
+  }
+  
+
+}

@@ -1,95 +1,59 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client'
+ import styles from './page.module.css'
+import {useTheme} from "next-themes";
+ import {Button} from "@nextui-org/react";
+import dynamic from 'next/dynamic' 
+import Cards from '../app/components/Cards'
+import { apiPoke } from './api';
+import { APIPoke } from './interfaces';
+import TestApi from './components/TestApi'
+import { ImageBack } from './components/ImageBack';
+import { MoonIcon } from './components/MoonIcon';
+import { SunIcon } from './components/SunIcon';
 
-export default function Home() {
+async function HomePage() {
+
+   const { theme, setTheme } = useTheme()
+   const {data} = await apiPoke.get<APIPoke>('/pokemon?limit=8')
+   const results  = data.results
+  //  console.log('results home page: ', results);
+   
+
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+
+    <div>
+      <ImageBack 
+        value={false}
+       />
+      
+    <div className={styles.MainContainer} >
+
+      {/* <time dateTime="2023-11-27" suppressHydrationWarning /> */}
+      <div >
+      <span className={styles.HomeText}> Hello Welcome to <br/> Pokemon Legacy</span>
+      <span className={styles.ButtonContainer}>
+      <button className={styles.ButtonStarted}   >Get Stared</button>
+      </span>
       </div>
+        <div className={styles.darkmode}>
+          <div className={styles.textdarkmode}>
+           {theme} Mode
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+          </div>
+          <div  className={styles.btndark} >
+      <Button radius='lg' size='sm' color="danger" onClick={() => setTheme('light')}><SunIcon/> </Button>
       </div>
+      <Button  radius='lg' size='sm'  color="default"  onClick={() => setTheme('dark')}><MoonIcon/> </Button>
+    </div>  
+    
+    <Cards />
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+      
+    </div>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
   )
 }
+
+export default dynamic(() => Promise.resolve(HomePage), { ssr: false });
