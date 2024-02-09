@@ -1,25 +1,35 @@
-import { PokemonD } from "@/app/interfaces";
+import { apiPoke } from "@/app/api";
+import { APIPoke, PokemonD } from "@/app/interfaces";
 import { Metadata } from "next";
 import Image from "next/image";
 
 
 interface Porps {
-  params: { id: string };
+  params: { name: string };
 
 }
 
 export async function generateStaticParams() {
-  const staticPokeCount = Array.from({ length: 200 }).map((v, i) => `${i + 1}`)
+  // const staticPokeCount = Array.from({ length: 200 }).map((v, i) => `${i + 1}`)
 
-  return staticPokeCount.map(id => ({
-    id: id,
+  const pokedata = await apiPoke.get<APIPoke>('/pokemon?limit=200').then((response)=>(response.data))
+
+  const staticdatap = pokedata.results.map( pokemon => ({ name: pokemon.name}))
+
+  // console.log('sataic data', pokedata.results);
+  
+
+  
+
+  return staticdatap.map(({name}) => ({
+    name: name,
   }))
 }
 
 
 export async function generateMetadata({ params }: Porps): Promise<Metadata> {
 
-  const { id, name } = await getPoke(params.id);
+  const { id, name } = await getPoke(params.name);
 
   return {
     title: `#${id} - ${name}`,
@@ -27,11 +37,11 @@ export async function generateMetadata({ params }: Porps): Promise<Metadata> {
   }
 }
 
-const getPoke = async (id: string): Promise<PokemonD> => {
-  const pokemons = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, {
+const getPoke = async (name: string): Promise<PokemonD> => {
+  const pokemons = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`, {
     cache: 'force-cache' // change this  more later
   }).then(res => res.json());
-  // console.log('is charguing: ',pokemons.name);
+  // console.log('charguing: ',pokemons.name);
 
   // throw new Error('this is a fck error');
 
@@ -39,10 +49,12 @@ const getPoke = async (id: string): Promise<PokemonD> => {
 }
 
 
-export default async function PokemonsDPage({ params }: Porps) {
+export default async function PokemonsNPage({ params }: Porps) {
 
-  const pokemon = await getPoke(params.id);
+  const pokemon = await getPoke(params.name);
 
+  // console.log('params', params);
+  
 
   return (
     <div className="flex mt-5 flex-col items-center text-slate-800">
