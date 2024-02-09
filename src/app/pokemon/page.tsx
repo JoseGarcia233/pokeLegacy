@@ -54,7 +54,7 @@ export default async function PokemonPage() {
           // console.log('klk data map', pokeId);
           // const rest = imagePoke.get(`/1`)
 
-          // console.log('klk image',rest);
+          //  console.log('name',pokemon.name);
 
 
 
@@ -63,7 +63,7 @@ export default async function PokemonPage() {
           return (
            
            <div key={index} >
-            <Link href={`/pokemon/pokemonsd/${pokeId}`} >
+            <Link href={`/pokemon/pokemons/${pokemon.name}`} >
                <Tooltip showArrow={true} color='danger' content="Click for more detail"> 
             <Card
               shadow="sm"
